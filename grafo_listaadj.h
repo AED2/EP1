@@ -11,9 +11,11 @@
 #include <stdlib.h>
 #include <float.h>
 #include <stdio.h>
+//#include <fcntl.h>
 
 #define VERTICE_INVALIDO NULL  /* numero de vertice invalido ou ausente */
 #define AN -1                /* aresta nula */ 
+//#define string char* 
 
 typedef int TipoPeso;
 
@@ -57,6 +59,8 @@ bool inicializaGrafo(TipoGrafo* grafo, int nv);
 
 bool inicializaGrafo2(TipoGrafo* grafo, int nv);
 
+bool inicializaGrafo3(TipoGrafo* grafo, int numV);
+
 /* int obtemNrVertices(TipoGrafo* grafo): retorna o numero de vertices do grafo */
 int obtemNrVertices(TipoGrafo* grafo);
 
@@ -77,6 +81,8 @@ bool verificaValidadeVertice(int v, TipoGrafo *grafo);
 void insereAresta(TipoGrafo *grafo, int v1, int v2, TipoPeso peso );
 
 void insereAresta2(TipoGrafo * g, int v1,int v2, TipoPeso peso );
+
+void insereAresta3(TipoGrafo * g, int v1,int v2, TipoPeso peso);
 /*
   bool existeAresta(int v1, int v2, TipoGrafo *grafo):
   Retorna true se existe a aresta (v1, v2) no grafo e false caso contrário  
