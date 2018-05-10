@@ -122,7 +122,4 @@ void imprimeGrafo(TipoGrafo* grafo){
         printf("\n");
         i++;
     }
-    if(!p){
-        printf("NAO EXISTE GRAFO \n");
-    }
 }

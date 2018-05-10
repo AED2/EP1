@@ -1,9 +1,89 @@
 #include "grafo_listaadj.h"
 #include "heap_binario.h"
 
+void imprimeVetor(int *entrada){
+	int j;
+    int tam = sizeof(entrada);
+    for(j = 1; j<= tam; j++){
+        printf("%d",entrada[j]);
+        printf(" ");
+    }
+    printf("\n");
+}
+
+void imprimeVetorDouble(double *entrada){
+    int j;
+    int tam = sizeof(entrada);
+    for(j = 0; j< tam; j++){
+        //printf("%.0f",entrada[j]);
+        printf("%.0ef",entrada[j]);
+        printf(" ");
+    }
+    printf("\n");
+}
+
+TipoGrafo dijkstra(TipoGrafo* grafo, int vStart){
+	
+	int i;
+	double d= DBL_MAX;
+
+	///INICIALIZAÇÃO
+	int vetorAnt[grafo->numVertices + 1];
+	double vetorDist[grafo->numVertices + 1];
+	for(i = 1; i <=grafo->numVertices; i++){
+		vetorDist[i] = d;
+		vetorAnt[i] = -1;
+	}
+	
+	imprimeVetor(vetorAnt);
+	printf("\n*******************OK START***************\n");
+	imprimeVetorDouble(vetorDist);
+	
+/*	///MAKE - heap de infinitos
+	double v1 = (double)vStart;
+	double *q = inicializaHeap(&grafo, v1);
+
+	///d[s] = 0 - o primeiro verificado do heap tem valor 0
+	vetorDist[vStart] = 0;
+
+	///enquanto o heap/Q n estiver vazio
+	while(q[0]!= -1){
+		int u = extract_min(q);
+		/// u - vertice atual q eu pego adj
+		/// v - distancia ate o vertice u
+		TipoApontador p = grafo->listaAdj[u];
+		if(p){
+			 while(p){
+				//relax(u,v,w);
+				int v = p->vdest;
+				if(vetorDist[u] > vetorDist[v] + pesoAresta(&grafo,u,v)){
+					vetorDist[u] = vetorDist[v]+ pesoAresta(&grafo,u,v);
+					vetorAnt[u] = v;
+				}
+				p = p->prox;
+			}
+		}
+	}
+*/	
+	
+	TipoGrafo subGrafoDijkstra;
+	inicializaGrafo(&subGrafoDijkstra, grafo->numVertices);
+	//for(){
+	if(1==1){
+		int o,d,c;
+	    o = vStart;
+	    d = subGrafoDijkstra.numVertices-1;
+	    c = 3;
+		insereAresta2(&subGrafoDijkstra, o,d,c);
+		//insereArestaSubgrafo(&subGrafoDijkstra, v1, d, ant);
+	}
+	return subGrafoDijkstra;
+}
+
 int main(){
 	
 	TipoGrafo grafo;
+	int s;
 	
 	  FILE *fp;
 	  fp = fopen("entrada_teste1.txt","r");
@@ -16,7 +96,7 @@ int main(){
 	   fscanf(fp, "%s", buff);
 	   //printf("1 : %s\n", buff );
 	   char*save = buff;
-	   int s = (int)save[0]-48;
+	   s = (int)save[0]-48;
 	   printf("NUM S: %d\n",s);
 
 	   fgets(buff, 255, (FILE*)fp);
@@ -43,10 +123,15 @@ int main(){
 	   printf("\n FOPEM\n");
       }
 	
-    insereAresta2(&grafo, 5,7,12);
-    insereAresta2(&grafo, 5,3,12);
-    insereAresta2(&grafo, 4,3,12);
-
-    //imprimeGrafo(&grafo);
+    imprimeGrafo(&grafo);
+	
+	TipoGrafo grafoRespDijkstra;
+	inicializaGrafo2(&grafoRespDijkstra, s);
+	grafoRespDijkstra = dijkstra(&grafo, s);
+	//dijkstra(&grafo, s);
+	printf("\n*******************OK FINALE***************\n");
+	
+	//imprimeGrafo(&grafoRespDijkstra);
+	
 	printf("CHEGAMOS AO FIM \n");
 }
