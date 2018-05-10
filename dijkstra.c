@@ -14,7 +14,7 @@ void imprimeVetor(int *entrada){
 void imprimeVetorDouble(double *entrada){
     int j;
     int tam = sizeof(entrada);
-    for(j = 0; j< tam; j++){
+    for(j = 1; j<= tam; j++){
         //printf("%.0f",entrada[j]);
         printf("%.0ef",entrada[j]);
         printf(" ");
@@ -36,8 +36,8 @@ TipoGrafo dijkstra(TipoGrafo* grafo, int vStart){
 	}
 	
 	imprimeVetor(vetorAnt);
-	printf("\n*******************OK START***************\n");
 	imprimeVetorDouble(vetorDist);
+	printf("\n*******************OK START***************\n");
 	
 /*	///MAKE - heap de infinitos
 	double v1 = (double)vStart;
@@ -65,9 +65,10 @@ TipoGrafo dijkstra(TipoGrafo* grafo, int vStart){
 		}
 	}
 */	
+	printf("\n*******************OK FINALE***************\n");
 	
 	TipoGrafo subGrafoDijkstra;
-	inicializaGrafo(&subGrafoDijkstra, grafo->numVertices);
+	inicializaGrafo2(&subGrafoDijkstra, grafo->numVertices);
 	//for(){
 	if(1==1){
 		int o,d,c;
@@ -129,9 +130,8 @@ int main(){
 	inicializaGrafo2(&grafoRespDijkstra, s);
 	grafoRespDijkstra = dijkstra(&grafo, s);
 	//dijkstra(&grafo, s);
-	printf("\n*******************OK FINALE***************\n");
 	
-	//imprimeGrafo(&grafoRespDijkstra);
+	imprimeGrafo(&grafoRespDijkstra);
 	
 	printf("CHEGAMOS AO FIM \n");
 }
