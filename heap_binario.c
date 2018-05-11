@@ -1,18 +1,5 @@
 #include "heap_binario.h"
-/*
-int pai(int i) {
-    return((i+1)/2)-1;
-}
 
-int esq(int i) {
-    return 2*i+1;
-}
-
-int dir(int i) {
-    return 2*i+2;
-}
-
-*/
 int esq(int i){
     if (i==0){
         return 1;

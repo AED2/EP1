@@ -40,6 +40,19 @@ double * inicializaHeap(TipoGrafo* grafo, double vStart){
 }
 */
 
+int extract_min(double * vHeap){
+    double min = vHeap[0];
+    int i;
+    for(i = 1; vHeap[i]!= 0; i++){
+        if(min>vHeap[i]){
+            min = vHeap[i];
+        }
+    }
+	vHeap[i-1]= 0;
+    int resp = (int)min;
+    return resp;
+}
+
 TipoGrafo dijkstra(TipoGrafo* grafo, int vStart, int n){
 	
 	int i;
@@ -76,33 +89,20 @@ TipoGrafo dijkstra(TipoGrafo* grafo, int vStart, int n){
 	double* q = heapSort(vetorHeap, n);
 	
 	printf("\n*******************OK START***************\n");
-/*	
-	double a[10] = {1,2,3,4,5,6,7,8,9,10};
 	
-	int l = sizeof(a);
-	printf("%d\n",l);
-	
-	imprimeHeap(a);
-	
-	
-	double* a;
-	a[0] = (double)1.2;
-	a[1] = (double)2;
-	
-	imprimeHeap(a);
-	
-	double* q = heapSort(a, sizeof(a)-4);
-*/	
 	imprimeHeap(q);
 
-/*	
+	
 
 	///enquanto o heap/Q n estiver vazio
-	while(q[0]!= -1){
+	while(q[0]!= 0){
 		int u = extract_min(q);
+		imprimeHeap(q);
+		//printf("\n %d \n", u);
 		/// u - vertice atual q eu pego adj
 		/// v - distancia ate o vertice u
-		TipoApontador p = grafo->listaAdj[u];
+	}
+/*		TipoApontador p = grafo->listaAdj[u];
 		if(p){
 			 while(p){
 				//relax(u,v,w);
