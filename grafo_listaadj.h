@@ -11,6 +11,7 @@
 #include <stdlib.h>
 #include <float.h>
 #include <stdio.h>
+//#include <math.h>
 //#include <fcntl.h>
 
 #define VERTICE_INVALIDO NULL  /* numero de vertice invalido ou ausente */

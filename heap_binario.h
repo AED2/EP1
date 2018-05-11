@@ -5,9 +5,8 @@
 
 void imprimeHeap(double *entrada);
 
+void minHeapify(double *dist, int i, int n);
 
-void heapify(double *dist, int i, int n);
-
-void buildheap(double *dist, int n);
+void buildMinHeap(double*dist, int n);
 
 double * heapSort(double *dist, int n);

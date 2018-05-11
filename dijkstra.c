@@ -15,6 +15,7 @@ void imprimeVetorDouble(double *entrada){
     int j;
     int tam = sizeof(entrada)-4;
     for(j = 1; j<= tam; j++){
+		//printf("%.0f",entrada[j]);
 		if(entrada[j] <100){
 			printf("%.0f",entrada[j]);
 		}
@@ -39,7 +40,7 @@ double * inicializaHeap(TipoGrafo* grafo, double vStart){
 }
 */
 
-TipoGrafo dijkstra(TipoGrafo* grafo, int vStart){
+TipoGrafo dijkstra(TipoGrafo* grafo, int vStart, int n){
 	
 	int i;
 	double d= DBL_MAX;
@@ -71,10 +72,28 @@ TipoGrafo dijkstra(TipoGrafo* grafo, int vStart){
 	}
 	imprimeHeap(vetorHeap);
 	
-	double* q = heapSort(vetorHeap, sizeof(vetorHeap)-4);
-	imprimeHeap(q);
+	//double* q = heapSort(vetorHeap, sizeof(vetorHeap)-4);
+	double* q = heapSort(vetorHeap, n);
 	
 	printf("\n*******************OK START***************\n");
+/*	
+	double a[10] = {1,2,3,4,5,6,7,8,9,10};
+	
+	int l = sizeof(a);
+	printf("%d\n",l);
+	
+	imprimeHeap(a);
+	
+	
+	double* a;
+	a[0] = (double)1.2;
+	a[1] = (double)2;
+	
+	imprimeHeap(a);
+	
+	double* q = heapSort(a, sizeof(a)-4);
+*/	
+	imprimeHeap(q);
 
 /*	
 
@@ -116,7 +135,7 @@ TipoGrafo dijkstra(TipoGrafo* grafo, int vStart){
 int main(){
 	
 	TipoGrafo grafo;
-	int s;
+	int s, n;
 	
 	  FILE *fp;
 	  fp = fopen("entrada_teste1.txt","r");
@@ -135,7 +154,7 @@ int main(){
 	   fgets(buff, 255, (FILE*)fp);
 	   
 	   fgets(buff, 255, (FILE*)fp);
-	   int n,m;
+	   int m;
 	   n = (int)save[0]-48;
 	   m = (int)save[2]-48;
 	   inicializaGrafo2(&grafo, n);
@@ -160,7 +179,7 @@ int main(){
 	
 	TipoGrafo grafoRespDijkstra;
 	inicializaGrafo2(&grafoRespDijkstra, s);
-	grafoRespDijkstra = dijkstra(&grafo, s);
+	grafoRespDijkstra = dijkstra(&grafo, s, n);
 	//dijkstra(&grafo, s);
 	
 	imprimeGrafo(&grafoRespDijkstra);
