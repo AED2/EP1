@@ -115,7 +115,7 @@ bool removeAresta(int v1, int v2, TipoGrafo *grafo);
    bool listaAdjVazia(int v, TipoGrafo* grafo):
    Retorna true se a lista de adjacencia (de vertices adjacentes) do vertice v é vazia, e false caso contrário. 
 */
-bool listaAdjVazia(int v, TipoGrafo* grafo);
+bool listaAdjVazia(TipoGrafo* grafo, int v);
 
 /*
    TipoApontador primeiroListaAdj(int v, TipoGrafo* grafo):
@@ -130,7 +130,7 @@ TipoApontador primeiroListaAdj(int v, TipoGrafo* grafo);
    Retorna o proximo vertice adjacente a v, partindo do vertice "atual" adjacente a v
    ou VERTICE_INVALIDO se a lista de adjacencia tiver terminado sem um novo proximo.        
 */
-TipoApontador proxListaAdj(int v, TipoGrafo* grafo, TipoApontador atual);
+TipoApontador proxListaAdj(TipoGrafo* grafo,int v, TipoApontador atual);
 
 /*
     void imprimeGrafo(TipoGrafo* grafo):

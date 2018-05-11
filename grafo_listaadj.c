@@ -105,6 +105,30 @@ void insereAresta3(TipoGrafo * g, int v1,int v2, TipoPeso peso){
     }
 }
 
+bool listaAdjVazia(TipoGrafo* grafo, int v){
+	TipoApontador r = grafo->listaAdj[v];
+	if(r->prox){
+		return false;
+	}
+	return true;
+}
+
+TipoApontador proxListaAdj(TipoGrafo* grafo,int v, TipoApontador atual){
+	TipoApontador p= atual;
+	if(!p){
+		return VERTICE_INVALIDO;
+	}
+	else{
+		while(p && p->vdest != v){
+			p = p->prox;
+		}
+		if(p->vdest != v){
+			return VERTICE_INVALIDO;
+		}
+	}
+	return p->prox;
+}
+
 void imprimeGrafo(TipoGrafo* grafo){
     int i = 1;
     TipoApontador p;
@@ -123,3 +147,4 @@ void imprimeGrafo(TipoGrafo* grafo){
         i++;
     }
 }
+

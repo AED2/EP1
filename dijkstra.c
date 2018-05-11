@@ -3,7 +3,7 @@
 
 void imprimeVetor(int *entrada){
 	int j;
-    int tam = sizeof(entrada);
+    int tam = sizeof(entrada)-4;
     for(j = 1; j<= tam; j++){
         printf("%d",entrada[j]);
         printf(" ");
@@ -13,14 +13,31 @@ void imprimeVetor(int *entrada){
 
 void imprimeVetorDouble(double *entrada){
     int j;
-    int tam = sizeof(entrada);
+    int tam = sizeof(entrada)-4;
     for(j = 1; j<= tam; j++){
-        //printf("%.0f",entrada[j]);
-        printf("%.0ef",entrada[j]);
+		if(entrada[j] <100){
+			printf("%.0f",entrada[j]);
+		}
+		else{
+			printf("%.0ef",entrada[j]);
+		}
         printf(" ");
     }
     printf("\n");
 }
+
+/*
+double * inicializaHeap(TipoGrafo* grafo, double vStart){
+    double d= DBL_MAX;
+    int i;
+    double vetorHeap[grafo->numVertices];
+    for(i=0; i<grafo->numVertices; i++){
+        vetorHeap[i] = d;
+    }
+    vetorHeap[0] = vStart;
+    return vetorHeap;
+}
+*/
 
 TipoGrafo dijkstra(TipoGrafo* grafo, int vStart){
 	
@@ -30,21 +47,36 @@ TipoGrafo dijkstra(TipoGrafo* grafo, int vStart){
 	///INICIALIZAÇÃO
 	int vetorAnt[grafo->numVertices + 1];
 	double vetorDist[grafo->numVertices + 1];
-	for(i = 1; i <=grafo->numVertices; i++){
+	for(i = 0; i <=grafo->numVertices; i++){
 		vetorDist[i] = d;
 		vetorAnt[i] = -1;
 	}
 	
 	imprimeVetor(vetorAnt);
 	imprimeVetorDouble(vetorDist);
-	printf("\n*******************OK START***************\n");
 	
-/*	///MAKE - heap de infinitos
-	double v1 = (double)vStart;
-	double *q = inicializaHeap(&grafo, v1);
+	///MAKE - heap de infinitos	
+	double vetorHeap[grafo->numVertices];
+    for(i=0; i<grafo->numVertices; i++){
+        vetorHeap[i] = d;
+    }
+	//distancia ate vStart;
+	vetorHeap[0] = 0;
+	
+	i=1;
+	TipoApontador p = grafo->listaAdj[vStart];
+	while(p){
+		vetorHeap[i++] = (double)p->peso;
+		p = p->prox;
+	}
+	imprimeHeap(vetorHeap);
+	
+	double* q = heapSort(vetorHeap, sizeof(vetorHeap)-4);
+	imprimeHeap(q);
+	
+	printf("\n*******************OK START***************\n");
 
-	///d[s] = 0 - o primeiro verificado do heap tem valor 0
-	vetorDist[vStart] = 0;
+/*	
 
 	///enquanto o heap/Q n estiver vazio
 	while(q[0]!= -1){
